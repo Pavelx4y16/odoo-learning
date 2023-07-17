@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres:12
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db_odoo:/var/lib/postgresql/data
+
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    ports:
+      - 8069:8069
+    volumes:
+      - ./:/app
+
+  odoo_test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    ports:
+      - 8069:8069
+    volumes:
+      - ./:/app
+
+    entrypoint: []
+
+volumes:
+  db_odoo:
+    driver: local
