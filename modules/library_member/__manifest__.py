@@ -4,5 +4,8 @@
     "author": "Pavel Savastseika",
     "depends": ["library_app"],
     "application": False,
-    "data": ["views/book_view.xml"]
+    "data": [
+        "security/library_security.xml",
+        "views/book_view.xml"
+    ]
 }
