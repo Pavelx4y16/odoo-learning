@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_form_member" model="ir.ui.view">
+        <field name="name">Member Form</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <form string="Member">
+                <header>
+                    <!-- Buttons will go here -->
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="card_number"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_list_member" model="ir.ui.view">
+        <field name="name">Member List</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="card_number"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_search_member" model="ir.ui.view">
+        <field name="name">Member Filters</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="card_available"
+                        string="Card Available"
+                        domain="[('card_number', '!=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
